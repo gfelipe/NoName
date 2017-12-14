@@ -19,7 +19,7 @@ public class HomeController {
         model.addAttribute("alunos", alunoRepository.findAll());
         model.addAttribute("name", name);
 
-        return "greeting";
+        return "index";
     }
 
 }
