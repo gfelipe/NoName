@@ -10,6 +10,9 @@ public class Aluno {
     private Long id;
 
     private String nome;
+    private String matricula;
+
+
 
     public Long getId() {
         return id;
@@ -26,5 +29,8 @@ public class Aluno {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+
+
 
 }

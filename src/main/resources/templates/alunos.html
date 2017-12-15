@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Alunos</title>
+</head>
+<body>
+<header layout:include="Cabecalho"></header>
+
+<h1>Alunos</h1>
+
+
+<table>
+    <thead><tr><th>ID</th><th>Nome</th></tr></thead>
+    <tbody>
+    <tr th:each="aluno : ${alunos}">
+        <td th:text="${aluno.id}"></td><td th:text="${aluno.nome}"></td><td><a th:href="'/aluno/' + ${aluno.id}">VER PERFIL</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
