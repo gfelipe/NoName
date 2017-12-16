@@ -5,13 +5,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="MasterLayout">
 
-    <head>
-        <title>Início</title>
-    </head>
-
     <section layout:fragment="Conteudo">
+        <div id="page-wrapper">
+            <div class="container container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p th:text="'Hello, ' + ${name} + '!'" />
 
-        <h1>Alunos-</h1>
-        ${alunos}
-</section>
+                        <h1>Alunos</h1>
+                        <p th:each="aluno:  ${alunos}">
+                            <span th:text="${aluno.nome}"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </html>
