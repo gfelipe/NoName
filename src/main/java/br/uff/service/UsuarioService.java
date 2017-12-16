@@ -9,23 +9,27 @@ import java.security.NoSuchAlgorithmException;
 @Service
 public class UsuarioService {
 
-    public Usuario makeUser(Usuario usuario) {
-
-        Usuario usuarioParaSalvar = new Usuario();
+    private String doHash(String senha) {
         MessageDigest messageDigest = null;
         try {
             messageDigest = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        messageDigest.update(usuario.getSenha().getBytes());
-        String hashedString = new String(messageDigest.digest());
+        messageDigest.update(senha.getBytes());
+        return new String(messageDigest.digest());
+    }
+
+    public Usuario makeUser(Usuario usuario) {
+
+        Usuario usuarioParaSalvar = new Usuario();
 
         usuarioParaSalvar.setMatricula(usuario.getMatricula());
         usuarioParaSalvar.setNome(usuario.getNome());
-        usuarioParaSalvar.setSenha(hashedString);
+        usuarioParaSalvar.setSenha(this.doHash(usuario.getSenha()));
         usuarioParaSalvar.setEmail(usuario.getEmail());
         usuarioParaSalvar.setAprovacaoPendente(true);
         return usuarioParaSalvar;
     }
+
 }
