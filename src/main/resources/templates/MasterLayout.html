@@ -1,28 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt-br"
+<html lang="pt_BR"
       xmlns="http://www.w3.org.1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
-        <meta charset="UTF-8" />
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>NoName</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.min.css}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Sistema de Controle de TCC" />
+        <meta name="author" content="Caio Serra; Felipe Ferreira; Felipe Gomes; Mariano Copes;" />
+
+        <title>praesenti - Controle de TCC</title>
+
+        <!-- Favorite Icon -->
+        <link rel="shortcut icon" type="image/png" th:href="@{/images/logo/favicon.png}" />
+
+        <!-- Bootstrap Core CSS -->
+        <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+
+        <!-- MetisMenu CSS -->
+        <link th:href="@{/vendor/metisMenu/metisMenu.min.css}" rel="stylesheet" />
+
+        <!-- Custom CSS -->
+        <link th:href="@{/dist/css/sb-admin-2.css}" rel="stylesheet" />
+
+        <!-- Custom Fonts -->
+        <link th:href="@{/vendor/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
         <link rel="stylesheet" type="text/css" th:href="@{/css/masterStyle.css}" />
+        <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.min.css}" />
     </head>
 
     <body>
+        <div id="wrapper">
+            <header layout:include="Cabecalho"></header>
 
-        <header layout:include="Cabecalho"></header>
+            <section layout:fragment="Conteudo">
+                <p>Conteúdo principal</p>
+            </section>
 
-        <section layout:fragment="Conteudo">
-            <p>Conteúdo principal</p>
-        </section>
+        </div>
+        <!-- jQuery -->
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 
-        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script th:src="@{/vendor/metisMenu/metisMenu.min.js}"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script th:src="@{/dist/js/sb-admin-2.js}"></script>
+
         <script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
         <script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
         <script th:src="@{/js/masterLayout.js}"></script>
