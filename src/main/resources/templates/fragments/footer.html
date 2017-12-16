@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+<div th:fragment="footer">
+
+    <div class="container">
+
+        <footer>
+            <!-- this is footer -->
+            <div class="row" th:if="${#httpServletRequest.isUserInRole('STUDENT')}">
+                <h2>This will only be displayed if authenticated user has role STUDENT.</h2>
+            </div>
+            <div class="row" th:if="${#httpServletRequest.isUserInRole('ADMIN')}">
+                <h2>This will only be displayed if authenticated user has role ADMIN.</h2>
+            </div>
+            <div class="row" th:if="${#httpServletRequest.remoteUser}">
+                <h2 th:inline="text">Hello .</h2>
+            </div>
+            <span th:if="${#httpServletRequest.remoteUser}">
+                | Logged user: <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span> |
+                <a th:href="@{/logout}">Sign Out</a>
+            </span>
+
+            <script type="text/javascript"
+                    src="../../js/bootstrap.min.js"></script>
+
+        </footer>
+    </div>
+
+</div>
+</body>
+</html>
