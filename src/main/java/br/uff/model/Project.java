@@ -31,15 +31,17 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private GraduationWorkType type;
 
+    @OneToOne(fetch=FetchType.LAZY)
     private Student student1;
-
-    private Student student2;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
     private Set<Schedule> scheduleSet;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "bibliografy", cascade = CascadeType.ALL)
-    private Set<Bibliografy> bibliografySet;
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "projectSet", cascade = CascadeType.ALL)
+//    @JoinTable(name="project_has_bibliografy", joinColumns=
+//            {@JoinColumn(name="student_id")}, inverseJoinColumns=
+//            {@JoinColumn(name="bibliografy_id")})
+//    private Set<Bibliografy> bibliografySet;
 
     @Temporal(TemporalType.DATE)
     private Date presentation;
@@ -100,13 +102,7 @@ public class Project {
         this.student1 = student1;
     }
 
-    public Student getStudent2() {
-        return student2;
-    }
 
-    public void setStudent2(Student student2) {
-        this.student2 = student2;
-    }
 
     public Set<Schedule> getScheduleSet() {
         return scheduleSet;
@@ -116,13 +112,13 @@ public class Project {
         this.scheduleSet = scheduleSet;
     }
 
-    public Set<Bibliografy> getBibliografySet() {
-        return bibliografySet;
-    }
-
-    public void setBibliografySet(Set<Bibliografy> bibliografySet) {
-        this.bibliografySet = bibliografySet;
-    }
+//    public Set<Bibliografy> getBibliografySet() {
+//        return bibliografySet;
+//    }
+//
+//    public void setBibliografySet(Set<Bibliografy> bibliografySet) {
+//        this.bibliografySet = bibliografySet;
+//    }
 
     public Date getPresentation() {
         return presentation;

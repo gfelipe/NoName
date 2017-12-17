@@ -69,8 +69,11 @@ public class AccountController {
                         SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(user != null) {
+            System.out.print("================== user existe ==========================");
             Student student = academicPersonService.findByEmail(user.getUsername());
+            System.out.println("============================ "+student.getName()+ " ===========================");
             model.addAttribute("person", student);
+
         }
 
         return "detalhes";

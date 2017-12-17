@@ -20,6 +20,9 @@ public class Student extends AcademicPerson {
     private String grade;
     private String enrollment;
 
+    @OneToOne(fetch=FetchType.LAZY, mappedBy = "student1")
+    private Project project;
+
     public Long getId() {
         return id;
     }
