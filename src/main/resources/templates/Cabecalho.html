@@ -213,13 +213,18 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
+                    <span th:if="${#httpServletRequest.remoteUser}">
+                        <li><a href="/minha-conta"><i class="fa fa-user fa-fw"></i> Detalhes</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                        </li>
+                    </span>
+                    <span th:unless="${#httpServletRequest.remoteUser}">
+                        <li><a href="/login"><i class="fa fa-sign-in fa-fw"></i> Entrar</a></li>
+                    </span>
                 </ul>
                 <!-- /.dropdown-user -->
             </li>
