@@ -25,7 +25,5 @@ public class AcademicPersonService {
         return professorRepository.save(professor);
     }
 
-    public Student findByEmail(String email) {
-        return null;
-    }
+    public Student findByEmail(String email) { return studentRepository.findByEmail(email); }
 }

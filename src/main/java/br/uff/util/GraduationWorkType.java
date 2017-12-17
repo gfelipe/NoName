@@ -6,5 +6,14 @@ public enum GraduationWorkType {
     TCC2("Trabalho de Conclusão de Curso 1", "TCC2");
 
     private String name;
-    private String abbreviation
+    private String abbreviation;
+
+    GraduationWorkType(String name, String abbreviation){
+        this.name = name;
+        this.abbreviation = abbreviation;
+    }
+
+    public String getAbbreviation() { return this.abbreviation; }
+
+    public String getName(){ return this.name; }
 }

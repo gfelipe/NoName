@@ -6,18 +6,18 @@ public enum Course {
     COMPUTER_SCIENCE("Ciência da computação",  "CC");
 
     private String name;
-    private String abreviation;
+    private String abbreviation;
 
-    Course(String name, String abreviation) {
+    Course(String name, String abbreviation) {
         this.name = name;
-        this.abreviation = abreviation;
+        this.abbreviation = abbreviation;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAbreviation() {
-        return abreviation;
+    public String getAbbreviation() {
+        return abbreviation;
     }
 }

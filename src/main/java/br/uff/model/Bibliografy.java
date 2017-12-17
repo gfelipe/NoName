@@ -4,6 +4,8 @@ import br.uff.util.BibliografyType;
 
 import javax.persistence.*;
 
+import java.util.Set;
+
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
@@ -22,6 +24,9 @@ public class Bibliografy {
     private String year;
 
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
+    private Set<Project> projectSet;
 
     public Long getId() {
         return id;
@@ -69,5 +74,13 @@ public class Bibliografy {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Project> getProjectSet() {
+        return projectSet;
+    }
+
+    public void setProjectSet(Set<Project> projectSet) {
+        this.projectSet = projectSet;
     }
 }

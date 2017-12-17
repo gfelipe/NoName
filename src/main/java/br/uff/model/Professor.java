@@ -2,6 +2,9 @@ package br.uff.model;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
@@ -21,6 +24,9 @@ public class Professor extends AcademicPerson {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "professor", cascade = CascadeType.ALL)
+    private Set<Project> projects = new HashSet<>();
 
     public String getSiape() {
         return siape;
