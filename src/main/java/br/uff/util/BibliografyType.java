@@ -1,4 +1,4 @@
-package br.uff.model;
+package br.uff.util;
 
 public enum BibliografyType {
     ARTIGOINTERNET("Artigo da Internet"),
