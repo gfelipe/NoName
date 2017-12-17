@@ -10,7 +10,7 @@ public class DefaultController {
 
     @GetMapping("/home")
     public String home() {
-        return "/home";
+        return "/index";
     }
 
     @GetMapping("/admin")
@@ -27,7 +27,6 @@ public class DefaultController {
     public String register(Model model) {
 
         model.addAttribute("student", new Student());
-
         return "/cadastro";
     }
 
