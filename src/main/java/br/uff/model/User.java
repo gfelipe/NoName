@@ -1,5 +1,8 @@
 package br.uff.model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,5 +53,10 @@ public class User {
 
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public void encodePassword() {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(password);
     }
 }
