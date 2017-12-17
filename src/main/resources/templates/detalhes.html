@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns="http://www.w3.org.1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="MasterLayout">
+
+<section layout:fragment="Conteudo">
+    <div id="page-wrapper">
+        <div class="container container-fluid">
+            <ul>
+                <li th:inline="text">Nome: [[${student.name}]]</li>
+                <li th:inline="text">E-mail: [[${student.email}]]</li>
+            </ul>
+        </div>
+    </div>
+</section>
+</html>

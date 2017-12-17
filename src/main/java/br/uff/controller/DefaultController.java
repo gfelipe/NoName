@@ -1,6 +1,8 @@
 package br.uff.controller;
 
+import br.uff.model.Student;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -22,7 +24,10 @@ public class DefaultController {
     }
 
     @GetMapping("/cadastro")
-    public String register() {
+    public String register(Model model) {
+
+        model.addAttribute("student", new Student());
+
         return "/cadastro";
     }
 

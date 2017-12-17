@@ -13,7 +13,9 @@ public class Student {
     @GeneratedValue(strategy = AUTO)
     private Long id;
 
+    private String enrollment;
     private String name;
+    private String email;
 
     public Long getId() {
         return id;
@@ -31,4 +33,19 @@ public class Student {
         this.name = name;
     }
 
+    public String getEnrollment() {
+        return enrollment;
+    }
+
+    public void setEnrollment(String enrollment) {
+        this.enrollment = enrollment;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
