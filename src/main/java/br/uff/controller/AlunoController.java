@@ -1,7 +1,7 @@
 package br.uff.controller;
 
-import br.uff.model.Aluno;
-import br.uff.repository.AlunoRepository;
+import br.uff.model.Student;
+import br.uff.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class AlunoController {
 
     @Autowired
-    private AlunoRepository alunoRepository;
+    private StudentRepository studentRepository;
 
 
     @RequestMapping("/alunos")
     public String alunos(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
 
-        model.addAttribute("alunos", alunoRepository.findAll());
+        model.addAttribute("alunos", studentRepository.findAll());
 
         return "alunos";
     }
@@ -30,7 +30,7 @@ public class AlunoController {
     @RequestMapping("/aluno/{id}")
     public String aluno(@PathVariable("id") Integer id, Model model) {
 
-        model.addAttribute("name", alunoRepository.findOne(Long.valueOf(id)).getNome());
+        model.addAttribute("name", studentRepository.findOne(Long.valueOf(id)).getName());
         return "aluno";
     }
 }
