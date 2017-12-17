@@ -23,8 +23,6 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<UserRole> roles = new HashSet<>();
 
-
-
     public String getUsername() {
         return username;
     }

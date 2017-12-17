@@ -22,10 +22,8 @@ public class Project {
 
     private Date due;
 
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Professor professor;
-
 
     public Long getId() {
         return id;
@@ -58,6 +56,5 @@ public class Project {
     public void setDue(Date due) {
         this.due = due;
     }
-
 
 }

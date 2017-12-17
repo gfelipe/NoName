@@ -14,7 +14,7 @@ public class Student extends AcademicPerson {
     @GeneratedValue(strategy = AUTO)
     private Long id;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Course course;
 
     private String grade;

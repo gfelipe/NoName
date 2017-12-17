@@ -14,11 +14,10 @@ public class Professor extends AcademicPerson {
 
     private String siape;
 
-
-
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }

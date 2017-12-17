@@ -47,7 +47,7 @@ public class AccountController {
             if(savedUser != null) {
                 try {
                     httpServletRequest.login(savedUser.getUsername(), password);
-                    return "/home";
+                    return "/index";
                 } catch (ServletException e) {
                     e.printStackTrace();
                     return "login?error";

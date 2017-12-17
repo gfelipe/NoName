@@ -13,11 +13,6 @@ public class DefaultController {
         return "/index";
     }
 
-    @GetMapping("/home")
-    public String home() {
-        return "/index";
-    }
-
     @GetMapping("/admin")
     public String admin() {
         return "/admin";
