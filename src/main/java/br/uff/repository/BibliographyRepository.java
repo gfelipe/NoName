@@ -1,4 +1,13 @@
 package br.uff.repository;
 
-public interface BibliographyRepository {
+import br.uff.model.Bibliography;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.util.List;
+
+public interface BibliographyRepository extends PagingAndSortingRepository<Bibliography, Long> {
+
+    List<Bibliography> findAllByAuthorContaining(String s);
+
+    List<Bibliography> findAllByYearContaining(String s);
 }

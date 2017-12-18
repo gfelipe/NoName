@@ -18,6 +18,11 @@ public class DefaultController {
         return "/admin";
     }
 
+    @GetMapping("/bibliografia")
+    public String bibliografia() {
+        return "/bibliografia";
+    }
+
     @GetMapping("/user")
     public String user() {
         return "/user";
