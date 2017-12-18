@@ -1,10 +1,8 @@
 package br.uff.model;
 
-import br.uff.util.BibliografyType;
+import br.uff.util.BibliographyType;
 
 import javax.persistence.*;
-
-import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -15,7 +13,7 @@ public class Bibliografy {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private BibliografyType type;
+    private BibliographyType type;
 
     private String title;
 
@@ -33,11 +31,11 @@ public class Bibliografy {
         this.id = id;
     }
 
-    public BibliografyType getType() {
+    public BibliographyType getType() {
         return type;
     }
 
-    public void setType(BibliografyType type) {
+    public void setType(BibliographyType type) {
         this.type = type;
     }
 

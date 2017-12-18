@@ -1,6 +1,6 @@
 package br.uff.util;
 
-public enum BibliografyType {
+public enum BibliographyType {
     ARTIGOINTERNET("Artigo da Internet"),
     CDROM("CD-Rom"),
     COMUNICACAOORAL("Comunicação Oral"),
@@ -23,7 +23,7 @@ public enum BibliografyType {
 
     private String tipo;
 
-    BibliografyType(String tipo){
+    BibliographyType(String tipo){
         this.tipo = tipo;
     }
 
