@@ -7,86 +7,136 @@
 
 <section layout:fragment="Conteudo">
     <div id="page-wrapper">
-        <div class="container container-fluid" style="margin-top: 30px;">
 
-            <h1>Formulário de Cadastros</h1>
-
-            <form action="#" method="post" th:action="@{/minha-conta/cadastrar}">
-
-                <div class="form-group row ">
-                    <label class="col-sm-2 col-form-label">Nome</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="name" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" name="email" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Senha</label>
-                    <div class="col-sm-10">
-                        <input type="password" name="password" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Tipo</label>
-                    <div class="col-sm-10">
-                        <input type="radio" id="student-radio" name="type" value="student">
-                            <label for="student-radio"> Aluno</label>
-                        </input>
-                        <input type="radio" id="professor-radio" name="type" value="professor">
-                            <label for="professor-radio"> Professor</label>
-                        </input>
-                    </div>
-                </div>
-
-                <span id="specific-form">
-
-                </span>
-
-                <button type="submit" class="btn btn-primary">Enviar</button>
-
-            </form>
-
-            <span id="student-form" class="hidden">
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Matrícula</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="enrollment"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">CR</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="grade" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Curso</label>
-                    <div class="col-sm-10">
-                        <select name="course">
-                            <option th:value="NULL" th:text="'- Selecione -'"></option>
-                            <option th:each="course : ${T(br.uff.util.Course).values()}" th:value="${course}" th:text="${course.name}"></option>
-                        </select>
-                    </div>
-                </div>
-            </span>
-
-            <span id="professor-form" class="hidden">
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">SIAPE</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="siape" />
-                    </div>
-                </div>
-            </span>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Formulário de Cadastro de Usuário</h1>
+            </div>
+            <!-- /.col-lg-12 -->
         </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Cadastro
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form role="form" action="#" method="post" th:action="@{/minha-conta/cadastrar}">
+
+                                    <div class="form-group">
+                                        <label for="name">Nome</label>
+                                        <input class="form-control" id="name" type="text" name="name"
+                                               placeholder="Digite seu Nome"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">E-mail</label>
+                                        <input class="form-control" id="email" type="email" name="email"
+                                               placeholder="Digite seu E-mail"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Senha</label>
+                                        <input class="form-control" id="password" type="password" name="password"
+                                               placeholder="Digite sua senha"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Tipo </label>
+
+                                        <div class="radio-inline">
+                                            <label for="student-radio">
+                                                <input type="radio" id="student-radio" name="type" value="student">
+                                                    Aluno
+                                                </input>
+                                            </label>
+                                        </div>
+
+                                        <div class="radio-inline">
+                                            <label for="professor-radio">
+                                                <input type="radio" id="professor-radio" name="type" value="professor">
+                                                    Professor
+                                                </input>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span id="specific-form"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                        </label>
+                                    </div>
+                                </form>
+
+                                <span id="student-form" class="hidden">
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <label for="enrollment">Matrícula</label>
+                                                <input class="form-control" id="enrollment" type="text" name="enrollment"
+                                                       placeholder="Digite sua Matrícula" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <label for="grade">Coeficiente de Rendimento (CR)</label>
+                                                <input class="form-control" id="grade" type="text" name="grade"
+                                                       placeholder="Digite seu CR" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <label for="course">Curso</label>
+                                                <select name="course" id="course" class="form-control">
+                                                    <option th:value="NULL" th:text="'- Selecione -'"></option>
+                                                    <option th:each="course : ${T(br.uff.util.Course).values()}"
+                                                            th:value="${course}" th:text="${course.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </span>
+
+                                <span id="professor-form" class="hidden">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label for="siape">SIAPE</label>
+                                                <input class="form-control" id="siape" type="text" name="siape"
+                                                       placeholder="Digite sua matrícula SIAPE" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
