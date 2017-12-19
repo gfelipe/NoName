@@ -1,10 +1,9 @@
 package br.uff.controller;
 
-import br.uff.model.AcademicPerson;
-import br.uff.model.Professor;
-import br.uff.model.Student;
-import br.uff.model.User;
+import br.uff.model.*;
+import br.uff.repository.ProjectRepository;
 import br.uff.service.AcademicPersonService;
+import br.uff.service.ProjectService;
 import br.uff.service.UserService;
 import br.uff.util.Course;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,9 @@ public class AccountController {
 
     @Autowired
     private AcademicPersonService academicPersonService;
+
+    @Autowired
+    private ProjectService projectService;
 
     @RequestMapping("/cadastrar")
     public String register(HttpServletRequest httpServletRequest) {
@@ -64,15 +66,20 @@ public class AccountController {
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(Model model) {
 
+
+
         org.springframework.security.core.userdetails.User user =
                 (org.springframework.security.core.userdetails.User)
                         SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(user != null) {
-            System.out.print("================== user existe ==========================");
             Student student = academicPersonService.findByEmail(user.getUsername());
-            System.out.println("============================ "+student.getName()+ " ===========================");
+            Project project = projectService.findByStudent1(student);
+
+            System.out.println(" = = = = = = = = = = = = = = = ="+project);
+
             model.addAttribute("person", student);
+            model.addAttribute("project", project);
 
         }
 

@@ -103,7 +103,6 @@ public class Project {
     }
 
 
-
     public Set<Schedule> getScheduleSet() {
         return scheduleSet;
     }
