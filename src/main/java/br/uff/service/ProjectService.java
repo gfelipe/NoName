@@ -19,7 +19,6 @@ public class ProjectService {
     }
 
     public Project findByStudent1(Student student) {
-
         return projectRepository.findByStudent1(student);
     }
 

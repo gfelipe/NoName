@@ -6,15 +6,18 @@ import br.uff.service.AcademicPersonService;
 import br.uff.service.ProjectService;
 import br.uff.service.UserService;
 import br.uff.util.Course;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/minha-conta")
@@ -30,36 +33,50 @@ public class AccountController {
     private ProjectService projectService;
 
     @RequestMapping("/cadastrar")
-    public String register(HttpServletRequest httpServletRequest) {
+    public String register(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 
-        AcademicPerson person = null;
+        try {
+            AcademicPerson person = null;
 
-        if(httpServletRequest.getParameter("type").equals("student")) {
-            person = academicPersonService.save(buildStudent(httpServletRequest));
-        } else if(httpServletRequest.getParameter("type").equals("professor")) {
-            person = academicPersonService.save(buildProfessor(httpServletRequest));
-        }
-
-        if(person != null) {
-
-            String password = httpServletRequest.getParameter("password");
-
-            User savedUser = userService.createUserFromPerson(person, password);
-
-            if(savedUser != null) {
-                try {
-                    httpServletRequest.login(savedUser.getUsername(), password);
-                    return "/index";
-                } catch (ServletException e) {
-                    e.printStackTrace();
-                    return "login?error";
-                }
-            } else {
-                return "login?error";
+            if (request.getParameter("type").equals("student")) {
+                person = academicPersonService.save(buildStudent(request));
+            } else if (request.getParameter("type").equals("professor")) {
+                person = academicPersonService.save(buildProfessor(request));
             }
 
-        } else {
-            return "login?error";
+            if (person != null) {
+
+                String password = request.getParameter("password");
+
+                User savedUser = userService.createUserFromPerson(person, password);
+
+                if (savedUser != null && savedUser.isEnabled()) {
+                    try {
+                        request.login(savedUser.getUsername(), password);
+                        return "redirect:/index";
+                    } catch (ServletException e) {
+                        e.printStackTrace();
+                        return "login";
+                    }
+                } else if (savedUser != null) {
+                    redirectAttributes.addFlashAttribute("warn", "Usuário criado. Aguarde a aprovação de um administrador.");
+                    return "redirect:/index";
+                } else {
+                    model.addAttribute("error", "Erro ao salvar usuário.");
+                    return "login";
+                }
+
+            } else {
+                model.addAttribute("error", "Erro ao salvar pessoa.");
+                return "login";
+            }
+        } catch (Exception e) {
+            if (e instanceof MySQLIntegrityConstraintViolationException) {
+                model.addAttribute("error", "Usuário já existe.");
+            } else {
+                model.addAttribute("error", "Erro desconhecido.");
+            }
+            return "login";
         }
     }
 
