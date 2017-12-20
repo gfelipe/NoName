@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectRepository extends PagingAndSortingRepository<Project, Long> {
     Project findByStudent1(Student student);
+
+
 }

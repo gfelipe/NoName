@@ -18,4 +18,11 @@ public class StudentService {
     public Student findByEmail(String email) {
         return studentRepository.findByEmail(email);
     }
+
+    public Student updateStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+
+
 }

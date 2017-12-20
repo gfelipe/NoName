@@ -7,6 +7,9 @@ import br.uff.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class ProjectService {
@@ -19,8 +22,20 @@ public class ProjectService {
     }
 
     public Project findByStudent1(Student student) {
-
         return projectRepository.findByStudent1(student);
     }
+
+    public Project findById(Long id){
+        return projectRepository.findOne(id);
+    }
+
+
+    public List<Project> getAllProjects(){
+        List<Project> projects = new ArrayList<>();
+        projectRepository.findAll().forEach(projects::add);
+        return projects;
+
+    }
+
 
 }

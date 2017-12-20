@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns="http://www.w3.org.1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="MasterLayout">
+
+<section layout:fragment="Conteudo">
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 th:inline="text" class="page-header">Usuario: [[${person.name}]]</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+            <!--<div class="col-lg-4">-->
+            <div>
+
+
+                <style>
+                    .panel.panel-default {
+                        width: 40%;
+                        float: left;
+                        margin-left: 30px;
+                    }
+                </style>
+
+                <div class="panel panel-default user">
+                    <div class="panel-heading">
+                        Usuário
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" action="#" method="post" th:action="@{/minha-conta/edit}">
+                        <table>
+
+                            <tr><td>Nome</td><td th:inline="text">
+                                <input class="form-control" id="name" type="text" name="name" th:value="${person.name}" /></td></tr>
+                            <tr><td>E-Mail</td><td th:inline="text">
+                                <input class="form-control" id="email" type="text" name="email" th:value="${person.email}" /> </td></tr>
+                            <tr><td>Matricula </td><td th:inline="text"> : [[${person.enrollment}]]</td></tr>
+                            <tr><td>CR</td><td th:inline="text">
+                                <input class="form-control" id="grade" type="text" name="grade"  th:value="${person.grade}" /></td></tr>
+                            <tr><td>Curso</td><td th:inline="text">  [[${person.course}]]</td></tr>
+
+
+                        </table>
+                            <div class="form-group">
+                                <label>
+                                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                                </label>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="panel-footer">
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+
+    </div>
+</section>
+</html>
