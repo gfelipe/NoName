@@ -46,6 +46,8 @@ public class Project {
     @Temporal(TemporalType.DATE)
     private Date presentation;
 
+    private boolean completed = false;
+
     public Long getId() {
         return id;
     }
@@ -125,5 +127,13 @@ public class Project {
 
     public void setPresentation(Date presentation) {
         this.presentation = presentation;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

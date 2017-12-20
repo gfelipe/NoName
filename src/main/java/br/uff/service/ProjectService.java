@@ -3,13 +3,11 @@ package br.uff.service;
 import br.uff.model.Project;
 import br.uff.model.Student;
 import br.uff.repository.ProjectRepository;
-import br.uff.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Service
 public class ProjectService {
@@ -19,6 +17,10 @@ public class ProjectService {
 
     public Project save(Project project) {
         return projectRepository.save(project);
+    }
+
+    public List<Project> listByStudent(Student student) {
+        return projectRepository.findAllByStudent1(student);
     }
 
     public Project findByStudent1(Student student) {

@@ -6,7 +6,12 @@ import br.uff.model.Student;
 import br.uff.repository.ProfessorRepository;
 import br.uff.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class AcademicPersonService {
@@ -25,7 +30,25 @@ public class AcademicPersonService {
         return professorRepository.save(professor);
     }
 
-    public Student findByEmail(String email) { return studentRepository.findByEmail(email); }
+    public Student findStudentByEmail(String email) { return studentRepository.findByEmail(email); }public Professor findProfessorByEmail(String email) { return professorRepository.findByEmail(email); }
 
+    public List<Professor> listProfessors() {
+        List<Professor> professors = new ArrayList<>();
 
+        Iterator<Professor> iterator = professorRepository.findAll(new Sort("name")).iterator();
+
+        while (iterator.hasNext()) {
+            professors.add(iterator.next());
+        }
+
+        return professors;
+    }
+
+    public Student findStudentById(Long studentId) {
+        return studentRepository.findOne(studentId);
+    }
+
+    public Professor findProfessorById(Long professorId) {
+        return professorRepository.findOne(professorId);
+    }
 }

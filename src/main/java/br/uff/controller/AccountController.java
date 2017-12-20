@@ -95,7 +95,7 @@ public class AccountController {
                         SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(user != null) {
-            Student student = academicPersonService.findByEmail(user.getUsername());
+            Student student = academicPersonService.findStudentByEmail(user.getUsername());
             Project project = projectService.findByStudent1(student);
 
             System.out.println(" = = = = = =" + project + " -= = = = = = = = = = = = =");

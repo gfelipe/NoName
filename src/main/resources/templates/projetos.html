@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns="http://www.w3.org.1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="MasterLayout">
+
+    <section layout:fragment="Conteudo">
+        <div id="page-wrapper">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Seus projetos</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <div class="row">
+                <!--<div class="col-lg-4">-->
+                <div>
+
+                    <style>
+                        .panel.panel-default {
+                            width: 40%;
+                            float: left;
+                            margin-left: 30px;
+                        }
+                    </style>
+
+                <div class="panel panel-default user">
+                        <div class="panel-heading">
+                            TCC1
+                        </div>
+                        <div class="panel-body">
+                            <span th:if="${firstProject}">
+                                <ul>
+                                    <li th:inline="text"><b>Nome:</b> [[${firstProject.name}]]</li>
+                                    <li th:inline="text"><b>Orientador:</b> [[${firstProject.professor.name}]]</li>
+                                    <li th:inline="text"><b>Data limite para entrega:</b> [[${firstProject.due != null ? dt.format(firstProject.due) : 'N/D'}]]</li>
+                                </ul>
+                            </span>
+                            <span th:unless="${firstProject}">
+                                <center>Ainda não cadastrado</center>
+                                <a href="/projetos/cadastrar?type=TCC1">
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar">
+                                         Clique aqui para cadastrar
+                                    </button>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="panel-footer">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel panel-default project">
+
+
+                        <div class="panel-heading">
+                            TCC2
+                        </div>
+                        <div class="panel-body">
+                             <span th:if="${secondProject}">
+                                <ul>
+                                    <li th:inline="text"><b>Nome:</b> [[${firstProject.name}]]</li>
+                                    <li th:inline="text"><b>Orientador:</b> [[${firstProject.professor.name}]]</li>
+                                </ul>
+                            </span>
+                            <span th:if="${secondProject == null}">
+                                <center>Ainda não cadastrado<br/></center>
+                            </span>
+                            <span th:if="${secondProject == null and firstProject != null and firstProject.completed}">
+                                <a href="/projetos/cadastrar?type=TCC2">
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar">
+                                         Clique aqui para cadastrar
+                                    </button>
+                                </a>
+                            </span>
+                        </div>
+
+
+                        <div class="panel-footer">
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+
+        </div>
+    </section>
+</html>
