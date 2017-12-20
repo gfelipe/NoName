@@ -116,7 +116,7 @@ public class AccountController {
                 (org.springframework.security.core.userdetails.User)
                         SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Student student = academicPersonService.findByEmail(user.getUsername());
+        Student student = academicPersonService.findStudentByEmail(user.getUsername());
         model.addAttribute("person", student);
 
 
