@@ -38,6 +38,7 @@
 
         <link rel="stylesheet" type="text/css" th:href="@{/css/masterStyle.css}" />
         <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.min.css}" />
+
     </head>
 
     <body>
@@ -64,6 +65,19 @@
         <script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
         <script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
         <script th:src="@{/js/masterLayout.js}"></script>
+        <script>
+            $(function() {
+                $( "#datepicker" ).datepicker(
+                    {
+                        format: 'dd/mm/yyyy',
+                        language: 'pt-BR',
+                        weekStart: 0,
+                        startDate:'0d',
+                        todayHighlight: true
+                    }
+                );
+            });
+        </script>
 
     </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns="http://www.w3.org.1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="MasterLayout">
+
+<section layout:fragment="Conteudo">
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Formulário de Cadastro de Cronograma</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Cadastro de Cronograma
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form role="form" action="#" method="post" th:action="@{/cronogramas/criar}">
+
+                                    <div class="form-group">
+                                        <label for="activity">Atividade</label>
+                                        <input class="form-control" id="activity" type="text" name="activity"
+                                               placeholder="Digite o nome da atividade"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="description">Atividade</label>
+                                        <textarea class="form-control" id="description" name="description"
+                                                  placeholder="Digite a descrição da atividade"></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <label for="project">Projeto</label>
+                                                <select name="project" id="project" class="form-control">
+                                                    <option th:value="NULL" th:text="'- Selecione -'"></option>
+                                                    <option th:each="project : ${projects}"
+                                                            th:value="${project.id}" th:text="${project.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="datepicker">Atividade</label>
+                                        <input type="text" class="form-control" id="datepicker" name="date"
+                                                  placeholder="Digite a data da atividade" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="status">Estado</label>
+                                        <select name="status" class="form-control" id="status">
+                                            <option value="False">Pendente</option>
+                                            <option value="True">Concluído</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span id="specific-form"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                        </label>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</html>

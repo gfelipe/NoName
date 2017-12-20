@@ -26,6 +26,10 @@ public class DefaultController {
         return "/bibliografia";
     }
 
+    @GetMapping("/cronograma")
+    public String cronograma() { return "/cronograma"; }
+
+
     @GetMapping("/user")
     public String user() {
         return "/user";
