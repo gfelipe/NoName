@@ -15,11 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("/minha-conta")
@@ -155,6 +157,23 @@ public class AccountController {
         student.setEnrollment(request.getParameter("enrollment"));
         student.setGrade(request.getParameter("grade"));
         return student;
+    }
+
+    @RequestMapping("valida-cadastro")
+    public String getValidaCadastro(Model model){
+        List<User> users = this.userService.findUserByEnabled(false);
+        model.addAttribute("users",users);
+        return "valida-cadastro";
+    }
+
+    @RequestMapping(value="valida-cadastro",method=RequestMethod.POST)
+    public String validaCadastro(@RequestParam String username, Model model){
+        User user = this.userService.findUserByUsername(username);
+        user.setEnabled(true);
+        this.userService.save(user);
+        List<User> users = this.userService.findUserByEnabled(false);
+        model.addAttribute("users",users);
+        return "valida-cadastro";
     }
 
 }
