@@ -28,6 +28,7 @@
                             <div class="col-lg-6">
                                 <form role="form" action="#" method="post" th:action="@{/cronogramas/criar}">
 
+                                    <input type="hidden" name="project" th:value="${projectId}" />
                                     <div class="form-group">
                                         <label for="activity">Atividade</label>
                                         <input class="form-control" id="activity" type="text" name="activity"
@@ -38,19 +39,6 @@
                                         <label for="description">Atividade</label>
                                         <textarea class="form-control" id="description" name="description"
                                                   placeholder="Digite a descrição da atividade"></textarea>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                <label for="project">Projeto</label>
-                                                <select name="project" id="project" class="form-control">
-                                                    <option th:value="NULL" th:text="'- Selecione -'"></option>
-                                                    <option th:each="project : ${projects}"
-                                                            th:value="${project.id}" th:text="${project.name}"></option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div class="form-group">
