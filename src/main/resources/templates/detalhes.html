@@ -38,7 +38,7 @@
                                 <li th:inline="text"><b>E-mail:</b> [[${person.email}]]</li>
                                 <li th:inline="text"><b>Matricula:</b> [[${person.enrollment}]]</li>
                                 <li th:inline="text"><b>CR:</b> [[${person.grade}]]</li>
-                                <li th:inline="text"><b>Curso:</b> [[${person.course}]]</li>
+                                <li th:inline="text"><b>Curso:</b> [[${person.course.name}]]</li>
 
                             </ul>
                         </div>
@@ -53,14 +53,14 @@
 
 
                         <div class="panel-heading">
-                            Projeto
+                            <a th:href="@{/minha-conta/projeto/}" >Projeto</a>
                         </div>
                         <div class="panel-body">
                             <ul>
-                                <li th:inline="text"><b>Título:</b> [[${person.name}]]</li>
-                                <li th:inline="text"><b>Data de inicio:</b> [[${person.email}]]</li>
-                                <li th:inline="text"><b>Data de entrega:</b> [[${person.enrollment}]]</li>
-                                <li th:inline="text"><b>Orientador:</b> [[${person.course}]]</li>
+                                <li th:inline="text"><b>Título:</b> [[${project.name}]]</li>
+                                <li th:inline="text"><b>Data de inicio:</b> [[${project.start}]]</li>
+                                <li th:inline="text"><b>Data de entrega:</b> [[${project.due}]]</li>
+                                <li th:inline="text"><b>Orientador:</b> [[${project.professor.name}]]</li>
                                 <li th:inline="text"><b>Colaborador:</b> [[${person.grade}]]</li>
 
                             </ul>
