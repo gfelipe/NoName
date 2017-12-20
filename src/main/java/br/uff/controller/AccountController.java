@@ -1,8 +1,6 @@
 package br.uff.controller;
 
 import br.uff.model.*;
-import br.uff.repository.ProjectRepository;
-import br.uff.repository.StudentRepository;
 import br.uff.service.AcademicPersonService;
 import br.uff.service.ProjectService;
 import br.uff.service.StudentService;
@@ -20,12 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
 @RequestMapping("/minha-conta")
-public class AccountController {
+public class AccountController extends AbstractController {
+
     @Autowired
     private StudentService studentService;
 
@@ -160,20 +158,40 @@ public class AccountController {
     }
 
     @RequestMapping("valida-cadastro")
-    public String getValidaCadastro(Model model){
-        List<User> users = this.userService.findUserByEnabled(false);
-        model.addAttribute("users",users);
-        return "valida-cadastro";
+    public String getValidaCadastro(Model model, RedirectAttributes redirectAttributes){
+
+        org.springframework.security.core.userdetails.User user =
+                (org.springframework.security.core.userdetails.User)
+                        SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if(user != null && user.getAuthorities().stream().anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"))) {
+            List<User> users = this.userService.findUserByEnabled(false);
+            model.addAttribute("users",users);
+            return "valida-cadastro";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Usuário não autorizado a executar esta ação.");
+            return "redirect:/index";
+        }
     }
 
     @RequestMapping(value="valida-cadastro",method=RequestMethod.POST)
-    public String validaCadastro(@RequestParam String username, Model model){
-        User user = this.userService.findUserByUsername(username);
-        user.setEnabled(true);
-        this.userService.save(user);
-        List<User> users = this.userService.findUserByEnabled(false);
-        model.addAttribute("users",users);
-        return "valida-cadastro";
+    public String validaCadastro(@RequestParam String username, Model model, RedirectAttributes redirectAttributes){
+
+        org.springframework.security.core.userdetails.User currentUser =
+                (org.springframework.security.core.userdetails.User)
+                        SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if(currentUser != null && currentUser.getAuthorities().stream().anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"))) {
+            User user = this.userService.findUserByUsername(username);
+            user.setEnabled(true);
+            this.userService.save(user);
+            List<User> users = this.userService.findUserByEnabled(false);
+            model.addAttribute("users",users);
+            return "valida-cadastro";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Usuário não autorizado a executar esta ação.");
+            return "redirect:/index";
+        }
     }
 
 }

@@ -16,6 +16,12 @@
                 <!-- /.col-lg-12 -->
             </div>
 
+            <div th:if="${error}">
+                <div class="alert alert-danger">
+                    <p th:inline="text">[[${error} ?: 'Erro desconhecido.']]</p>
+                </div>
+            </div>
+
             <div th:if="${warn}">
                 <div class="alert alert-info">
                     <span th:inline="text">[[${warn}]]</span>
