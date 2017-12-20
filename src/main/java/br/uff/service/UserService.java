@@ -19,6 +19,7 @@ public class UserService {
         user.setUsername(person.getEmail());
         user.setPassword(password);
         user.setRoles(Collections.singleton(getRole(person, user)));
+        user.setEnabled(false);
         user.encodePassword();
 
         return save(user);

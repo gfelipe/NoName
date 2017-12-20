@@ -16,6 +16,12 @@
                 <!-- /.col-lg-12 -->
             </div>
 
+            <div th:if="${warn}">
+                <div class="alert alert-info">
+                    <span th:inline="text">[[${warn}]]</span>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">

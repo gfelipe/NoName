@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class DefaultController {
 
@@ -30,7 +33,6 @@ public class DefaultController {
 
     @GetMapping("/cadastro")
     public String register(Model model) {
-
         model.addAttribute("student", new Student());
         return "/cadastro";
     }
