@@ -51,6 +51,7 @@ public class ProjectController extends AbstractController {
     public String show(@PathVariable Long id, Model model) {
         Project project = projectService.findById(id);
 
+        model.addAttribute("dt", new SimpleDateFormat("dd/MM/YYYY"));
         model.addAttribute("project", project);
 
         return "projeto";

@@ -18,7 +18,7 @@
         <div class="row">
             <!--<div class="col-lg-4">-->
             <div class="panel panel-default user">
-                <div class="panel-heading">
+                <div class="panel-heading" th:inline="text">
                     [[${project.type}]]
                 </div>
                 <div class="panel-body">
@@ -26,51 +26,39 @@
                         <div class="col-lg-6">
 
                             <div class="form-group">
-                                <label for="activity">Nome</label>
-                                <input class="form-control" id="activity" type="text" name="name"
-                                       placeholder="Digite o nome da atividade" value="project.name"/>
+                                <label for="name">Nome</label>
+                                <span id="name" th:inline="text">[[${project.name}]]</span>
                             </div>
 
                                 <div class="form-group">
-                                    <label for="activity">Inicio</label>
-                                    <input class="form-control" id="activity" type="text" name="start"
-                                           placeholder="Digite o nome da atividade" value="project.start"/>
+                                    <label for="start">Inicio</label>
+                                    <span id="start" th:inline="text">[[${project.start != null ? dt.format(project.start) : 'N/D'}]]</span>
                                 </div>
 
                             <div class="form-group">
                                 <label for="due">Prazo</label>
-                                <input class="form-control" id="due" type="text" name="due"
-                                       placeholder="Digite o nome da atividade" value="project.due"/>
+                                <span id="due" value="project.due" th:inline="text">[[${project.due != null ? dt.format(project.due) : 'N/D'}]]</span>
                             </div>
 
                                 <div class="form-group">
                                     <label for="description">Atividade</label>
-                                    <input class="form-control" id="description" name="description"
-                                              placeholder="Digite a descrição da atividade">[[${project.name}]]</input>
+                                    <span id="description" th:inline="text">[[${project.name}]]</span>
                                 </div>
 
                             <div class="form-group">
                                 <label for="professor">Orientador</label>
-                                <input class="form-control" id="professor" name="professor"
-                                          placeholder="Digite a descrição da atividade">[[${project.professor.name}]]</input>
+                                <span id="professor" th:inline="text">[[${project.professor.name}]]</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="graduationType">Curso</label>
-                                <input class="form-control" id="graduationType" name="graduationType"
-                                       placeholder="Digite a descrição da atividade">[[${project.graduationType}]]</input>
+                                <span id="graduationType" th:inline="text">[[${project.type.getName()}]]</span>
                             </div>
 
-                            <div class="form-group">
-                                <label for="student1">Orientado</label>
-                                <input class="form-control" id="student1" name="student1"
-                                       placeholder="Digite a descrição da atividade">[[${project.student1}]]</input>
+                            <div>
+                                <label>Orientado</label>
+                                <span th:inline="text">[[${project.student1.getName()}]]</span>
                             </div>
-
-
-
-
-
 
                         </div>
                     </div>
@@ -80,39 +68,9 @@
                 </div>
 
             </div>
-
-            <div class="panel panel-default project">
-
-
-                <div class="panel-heading">
-                    TCC2
-                </div>
-                <div class="panel-body">
-                         <span th:if="${secondProject}">
-                            <ul>
-                                <li th:inline="text"><b>Nome:</b> [[${firstProject.name}]]</li>
-                                <li th:inline="text"><b>Orientador:</b> [[${firstProject.professor.name}]]</li>
-                            </ul>
-                        </span>
-                    <span th:if="${secondProject == null}">
-                            <center>Ainda não cadastrado<br/></center>
-                        </span>
-                    <span th:if="${secondProject == null and firstProject != null and firstProject.completed}">
-                            <a href="/projetos/cadastrar?type=TCC2">
-                                <button type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar">
-                                     Clique aqui para cadastrar
-                                </button>
-                            </a>
-                        </span>
-                </div>
-
-
-                <div class="panel-footer">
-
-                </div>
-            </div>
             <!-- /.col-lg-4 -->
         </div>
 
     </div>
 </section>
+</html>
